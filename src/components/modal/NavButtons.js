@@ -33,7 +33,13 @@ const StyledButton = styled.div`
 `;
 
 const NavButtons = (props) => {
-  const { currentStep, changeCurrentStep, currentRate, hoursCharging } = props;
+  const {
+    currentStep,
+    changeCurrentStep,
+    currentRate,
+    hoursCharging,
+    changeResultsReady,
+  } = props;
 
   const handlePreviousStep = () => {
     changeCurrentStep(currentStep - 1);
@@ -41,6 +47,10 @@ const NavButtons = (props) => {
 
   const handleNextStep = () => {
     changeCurrentStep(currentStep + 1);
+  };
+
+  const handleGetResults = () => {
+    changeResultsReady(true);
   };
 
   return (
@@ -55,7 +65,7 @@ const NavButtons = (props) => {
         </StyledButton>
       ) : null}
       {currentStep === 3 ? (
-        <StyledButton hoursCharging={hoursCharging} onClick={handleNextStep}>
+        <StyledButton hoursCharging={hoursCharging} onClick={handleGetResults}>
           <p>Evaluate</p>
         </StyledButton>
       ) : (

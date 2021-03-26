@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { initialRateFlat } from "./rates/homeLoad/initialRateFlat";
-import { initialRateTOU } from "./rates/homeLoad/initialRateTOU";
-import { evRateFlat } from "./rates/electricVehicle/evRateFlat";
-import { evRateTOU } from "./rates/electricVehicle/evRateTOU";
 import styled from "styled-components";
 import Navbar from "./components/main/Navbar";
 import Bolt from "./components/main/Bolt";
@@ -31,13 +27,16 @@ const App = () => {
   const [milesDriven, changeMilesDriven] = useState(1000);
   const [hoursCharging, changeHoursCharging] = useState("");
   const [currentRate, changeCurrentRate] = useState("");
+  const [resultsReady, changeResultsReady] = useState(false);
 
   const onOpenModal = () => changeModalOpen(true);
   const onCloseModal = () => {
     changeModalOpen(false);
     changeCurrentStep(1);
     changeMilesDriven(1000);
+    changeHoursCharging("");
     changeCurrentRate("");
+    changeResultsReady(false);
   };
 
   return (
@@ -53,6 +52,8 @@ const App = () => {
         changeHoursCharging={changeHoursCharging}
         modalOpen={modalOpen}
         onCloseModal={onCloseModal}
+        resultsReady={resultsReady}
+        changeResultsReady={changeResultsReady}
       />
       <Navbar />
       <Bolt />
