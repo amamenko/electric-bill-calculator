@@ -3,7 +3,7 @@ export const evRateTOU = (miles, hoursCharging) => {
 
   let totalBill = 0;
 
-  if (hoursCharging === "between noon and 6pm") {
+  if (hoursCharging === "peak") {
     totalBill = 0.2 * consumption;
   } else {
     totalBill = 0.08 * consumption;

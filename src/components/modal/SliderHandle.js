@@ -3,9 +3,13 @@ import styled from "styled-components";
 import { Handle } from "rc-slider";
 
 export const SliderHandle = (props) => {
-  const { value } = props;
+  const { value, dragging, index, ...rest } = props;
 
-  return <FlexHandle value={value}>{<Value>{value} miles</Value>}</FlexHandle>;
+  return (
+    <FlexHandle key={index} value={value} {...rest}>
+      {<Value>{value} miles</Value>}
+    </FlexHandle>
+  );
 };
 
 const FlexHandle = styled(Handle)`
@@ -18,5 +22,5 @@ const Value = styled.div`
   white-space: nowrap;
   color: #0892d0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: bold;
 `;

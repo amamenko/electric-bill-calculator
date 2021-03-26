@@ -29,6 +29,7 @@ const App = () => {
   const [modalOpen, changeModalOpen] = useState(false);
   const [currentStep, changeCurrentStep] = useState(1);
   const [milesDriven, changeMilesDriven] = useState(1000);
+  const [hoursCharging, changeHoursCharging] = useState("");
   const [currentRate, changeCurrentRate] = useState("");
 
   const onOpenModal = () => changeModalOpen(true);
@@ -48,6 +49,8 @@ const App = () => {
         changeCurrentRate={changeCurrentRate}
         milesDriven={milesDriven}
         changeMilesDriven={changeMilesDriven}
+        hoursCharging={hoursCharging}
+        changeHoursCharging={changeHoursCharging}
         modalOpen={modalOpen}
         onCloseModal={onCloseModal}
       />
