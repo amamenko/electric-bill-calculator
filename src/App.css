@@ -1,0 +1,43 @@
+.react-responsive-modal-root {
+  height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+.react-responsive-modal-modal {
+  height: calc(100vh - 14rem);
+  position: fixed;
+  top: 5%;
+  left: 2rem;
+  right: 2rem;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 360px) {
+  .react-responsive-modal-modal {
+    height: calc(100vh - 7rem);
+  }
+}
+
+@media only screen and (min-width: 361px) and (max-width: 420px) {
+  .react-responsive-modal-modal {
+    height: calc(100vh - 9rem);
+  }
+}
+
+@media only screen and (max-width: 1200px) and (orientation: landscape) {
+  .react-responsive-modal-modal {
+    height: calc(70vh);
+  }
+}
+
+@media only screen and (min-width: 1367px) {
+  .react-responsive-modal-modal {
+    max-height: 750px;
+    position: fixed;
+    top: 20%;
+    left: 2rem;
+    right: 2rem;
+  }
+}

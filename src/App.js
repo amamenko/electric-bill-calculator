@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { initialRateFlat } from "./rates/homeLoad/initialRateFlat";
 import { initialRateTOU } from "./rates/homeLoad/initialRateTOU";
 import { evRateFlat } from "./rates/electricVehicle/evRateFlat";
@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import Bolt from "./components/Bolt";
 import IntroText from "./components/IntroText";
 import CTA from "./components/CTA";
+import InputModal from "./components/InputModal";
+import "./App.css";
 
 const StyledAppContainer = styled.div`
   height: 80vh;
@@ -20,15 +22,22 @@ const StyledAppContainer = styled.div`
   justify-content: space-evenly;
   padding-left: 2rem;
   padding-right: 2rem;
+  position: relative;
 `;
 
 const App = () => {
+  const [modalOpen, changeModalOpen] = useState(false);
+
+  const onOpenModal = () => changeModalOpen(true);
+  const onCloseModal = () => changeModalOpen(false);
+
   return (
     <StyledAppContainer>
+      <InputModal modalOpen={modalOpen} onCloseModal={onCloseModal} />
       <Navbar />
       <Bolt />
       <IntroText />
-      <CTA />
+      <CTA onOpenModal={onOpenModal} />
     </StyledAppContainer>
   );
 };

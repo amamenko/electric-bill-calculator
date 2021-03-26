@@ -21,9 +21,11 @@ const StyledCTA = styled.button`
   }
 `;
 
-const CTA = () => {
+const CTA = (props) => {
+  const { onOpenModal } = props;
+
   return (
-    <StyledCTA>
+    <StyledCTA onClick={onOpenModal}>
       <p>Get Started</p>
     </StyledCTA>
   );
