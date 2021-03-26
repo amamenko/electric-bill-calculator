@@ -4,11 +4,11 @@ import { initialRateTOU } from "./rates/homeLoad/initialRateTOU";
 import { evRateFlat } from "./rates/electricVehicle/evRateFlat";
 import { evRateTOU } from "./rates/electricVehicle/evRateTOU";
 import styled from "styled-components";
-import Navbar from "./components/Navbar";
-import Bolt from "./components/Bolt";
-import IntroText from "./components/IntroText";
-import CTA from "./components/CTA";
-import InputModal from "./components/InputModal";
+import Navbar from "./components/main/Navbar";
+import Bolt from "./components/main/Bolt";
+import IntroText from "./components/main/IntroText";
+import CTA from "./components/main/CTA";
+import InputModal from "./components/modal/InputModal";
 import "./App.css";
 
 const StyledAppContainer = styled.div`
@@ -28,10 +28,16 @@ const StyledAppContainer = styled.div`
 const App = () => {
   const [modalOpen, changeModalOpen] = useState(false);
   const [currentStep, changeCurrentStep] = useState(1);
+  const [milesDriven, changeMilesDriven] = useState(1000);
   const [currentRate, changeCurrentRate] = useState("");
 
   const onOpenModal = () => changeModalOpen(true);
-  const onCloseModal = () => changeModalOpen(false);
+  const onCloseModal = () => {
+    changeModalOpen(false);
+    changeCurrentStep(1);
+    changeMilesDriven(1000);
+    changeCurrentRate("");
+  };
 
   return (
     <StyledAppContainer>
@@ -40,6 +46,8 @@ const App = () => {
         changeCurrentStep={changeCurrentStep}
         currentRate={currentRate}
         changeCurrentRate={changeCurrentRate}
+        milesDriven={milesDriven}
+        changeMilesDriven={changeMilesDriven}
         modalOpen={modalOpen}
         onCloseModal={onCloseModal}
       />

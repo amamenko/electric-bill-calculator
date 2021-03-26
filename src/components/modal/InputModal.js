@@ -1,8 +1,11 @@
 import React from "react";
 import { Modal } from "react-responsive-modal";
 import styled from "styled-components";
+import Slider from "rc-slider";
 import "react-responsive-modal/styles.css";
-import "../App.css";
+import "rc-slider/assets/index.css";
+import "../../App.css";
+import { SliderHandle } from "./SliderHandle";
 
 const StyledStep = styled.div`
   color: rgb(100, 100, 100);
@@ -79,6 +82,8 @@ const InputModal = (props) => {
     onCloseModal,
     currentRate,
     changeCurrentRate,
+    milesDriven,
+    changeMilesDriven,
   } = props;
 
   const handleSelectAnswerA = () => {
@@ -91,6 +96,10 @@ const InputModal = (props) => {
 
   const handleNextStep = () => {
     changeCurrentStep(currentStep + 1);
+  };
+
+  const handleSliderChange = (val) => {
+    changeMilesDriven(val);
   };
 
   return (
@@ -106,25 +115,37 @@ const InputModal = (props) => {
             ? "How many miles will you drive per year?"
             : "What hours of the day do you plan to charge?"}
         </StyledQuestion>
-        <StyledAnswersContainer>
-          <StyledIndividualAnswerContainer
-            currentRate={currentRate === "A"}
-            onClick={handleSelectAnswerA}
-          >
-            <h4>Rate A</h4>
-            <p>A flat rate of $0.15/kWh</p>
-          </StyledIndividualAnswerContainer>
-          <StyledIndividualAnswerContainer
-            currentRate={currentRate === "B"}
-            onClick={handleSelectAnswerB}
-          >
-            <h4>Rate B</h4>
-            <p>
-              A TOU rate of $0.20/kWh between noon and 6pm, and $0.08/kWh
-              otherwise
-            </p>
-          </StyledIndividualAnswerContainer>
-        </StyledAnswersContainer>
+        {currentStep === 1 ? (
+          <StyledAnswersContainer>
+            <StyledIndividualAnswerContainer
+              currentRate={currentRate === "A"}
+              onClick={handleSelectAnswerA}
+            >
+              <h4>Rate A</h4>
+              <p>A flat rate of $0.15/kWh</p>
+            </StyledIndividualAnswerContainer>
+            <StyledIndividualAnswerContainer
+              currentRate={currentRate === "B"}
+              onClick={handleSelectAnswerB}
+            >
+              <h4>Rate B</h4>
+              <p>
+                A TOU rate of $0.20/kWh between noon and 6pm, and $0.08/kWh
+                otherwise
+              </p>
+            </StyledIndividualAnswerContainer>
+          </StyledAnswersContainer>
+        ) : (
+          <Slider
+            min={1000}
+            max={100000}
+            value={milesDriven}
+            step={1000}
+            marks={{ 1000: "1,000 miles", 100000: "100,000 miles" }}
+            onChange={handleSliderChange}
+            handle={SliderHandle}
+          />
+        )}
         <StyledBottomButtonContainer>
           <StyledButton currentRate={currentRate} onClick={handleNextStep}>
             <p>Next Step</p>
