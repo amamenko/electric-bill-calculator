@@ -16,6 +16,16 @@ const StyledQuestion = styled.h3`
   text-align: center;
   padding: 3rem 0;
   font-size: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+  }
 `;
 
 const InputModal = (props) => {
@@ -41,6 +51,11 @@ const InputModal = (props) => {
           currentRate={currentRate}
           milesDriven={milesDriven}
           hoursCharging={hoursCharging}
+          resultsReady={resultsReady}
+          currentStep={currentStep}
+          changeCurrentStep={changeCurrentStep}
+          changeResultsReady={changeResultsReady}
+          onCloseModal={onCloseModal}
         />
       ) : (
         <>

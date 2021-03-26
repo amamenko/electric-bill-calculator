@@ -38,6 +38,32 @@ const StyledIndividualAnswerContainer = styled.div`
   h4 {
     font-size: 1.5rem;
   }
+
+  @media (max-width: 767px) {
+    p {
+      font-size: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 150px;
+  }
+
+  @media (max-width: 360px) {
+    width: 300px;
+    height: 120px;
+
+    p {
+      font-size: 0.3rem;
+      padding: 0rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const UserSelection = (props) => {

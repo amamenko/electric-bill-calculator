@@ -13,7 +13,7 @@ const StyledButton = styled.div`
   background: ${(props) =>
     props.previousStep
       ? "#dedede"
-      : props.currentRate || props.hoursCharging
+      : props.currentRate || props.hoursCharging || props.resultButton
       ? "rgb(79,178,134)"
       : "rgba(79,178,134, 0.5)"};
   transition: background 0.5s ease;
@@ -23,12 +23,24 @@ const StyledButton = styled.div`
 
   &:hover {
     cursor: ${(props) =>
-      props.currentRate || props.hoursCharging ? "pointer" : "auto"};
+      props.resultButton
+        ? "pointer"
+        : props.currentRate || props.hoursCharging
+        ? "pointer"
+        : "auto"};
   }
 
   p {
     font-weight: 600;
     font-size: 1.3rem;
+  }
+
+  @media (max-width: 420px) {
+    margin-top: ${(props) => (props.resultButton ? "2rem" : "4rem")};
+
+    p {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -39,10 +51,17 @@ const NavButtons = (props) => {
     currentRate,
     hoursCharging,
     changeResultsReady,
+    resultsReady,
+    resultButton,
+    onCloseModal,
   } = props;
 
   const handlePreviousStep = () => {
     changeCurrentStep(currentStep - 1);
+
+    if (resultsReady) {
+      changeResultsReady(false);
+    }
   };
 
   const handleNextStep = () => {
@@ -50,7 +69,11 @@ const NavButtons = (props) => {
   };
 
   const handleGetResults = () => {
-    changeResultsReady(true);
+    changeCurrentStep(currentStep + 1);
+
+    if (!resultsReady) {
+      changeResultsReady(true);
+    }
   };
 
   return (
@@ -58,10 +81,11 @@ const NavButtons = (props) => {
       {currentStep > 1 ? (
         <StyledButton
           previousStep
+          resultButton={resultButton}
           currentRate={currentRate}
           onClick={handlePreviousStep}
         >
-          <p>Previous Step</p>
+          <p>{resultsReady ? "Edit Choices" : "Previous Step"}</p>
         </StyledButton>
       ) : null}
       {currentStep === 3 ? (
@@ -69,8 +93,12 @@ const NavButtons = (props) => {
           <p>Evaluate</p>
         </StyledButton>
       ) : (
-        <StyledButton currentRate={currentRate} onClick={handleNextStep}>
-          <p>Next Step</p>
+        <StyledButton
+          resultButton={resultButton}
+          currentRate={currentRate}
+          onClick={resultsReady ? onCloseModal : handleNextStep}
+        >
+          <p>{resultsReady ? "Back to Home" : "Next Step"}</p>
         </StyledButton>
       )}
     </StyledBottomButtonsContainer>

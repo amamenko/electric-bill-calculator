@@ -30,13 +30,17 @@ const App = () => {
   const [resultsReady, changeResultsReady] = useState(false);
 
   const onOpenModal = () => changeModalOpen(true);
+
   const onCloseModal = () => {
     changeModalOpen(false);
-    changeCurrentStep(1);
-    changeMilesDriven(1000);
-    changeHoursCharging("");
-    changeCurrentRate("");
-    changeResultsReady(false);
+
+    setTimeout(() => {
+      changeCurrentStep(1);
+      changeMilesDriven(1000);
+      changeHoursCharging("");
+      changeCurrentRate("");
+      changeResultsReady(false);
+    }, 300);
   };
 
   return (
