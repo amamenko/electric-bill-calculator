@@ -27,13 +27,22 @@ const StyledAppContainer = styled.div`
 
 const App = () => {
   const [modalOpen, changeModalOpen] = useState(false);
+  const [currentStep, changeCurrentStep] = useState(1);
+  const [currentRate, changeCurrentRate] = useState("");
 
   const onOpenModal = () => changeModalOpen(true);
   const onCloseModal = () => changeModalOpen(false);
 
   return (
     <StyledAppContainer>
-      <InputModal modalOpen={modalOpen} onCloseModal={onCloseModal} />
+      <InputModal
+        currentStep={currentStep}
+        changeCurrentStep={changeCurrentStep}
+        currentRate={currentRate}
+        changeCurrentRate={changeCurrentRate}
+        modalOpen={modalOpen}
+        onCloseModal={onCloseModal}
+      />
       <Navbar />
       <Bolt />
       <IntroText />

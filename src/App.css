@@ -6,9 +6,9 @@
 }
 
 .react-responsive-modal-modal {
-  height: calc(100vh - 14rem);
+  height: 50vh;
   position: fixed;
-  top: 5%;
+  top: 20%;
   left: 2rem;
   right: 2rem;
   margin: 0 auto;
