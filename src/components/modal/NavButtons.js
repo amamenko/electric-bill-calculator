@@ -16,6 +16,12 @@ const StyledButton = styled.div`
       : props.currentRate || props.hoursCharging || props.resultButton
       ? "rgb(79,178,134)"
       : "rgba(79,178,134, 0.5)"};
+  pointer-events: ${(props) =>
+    props.previousStep
+      ? "auto"
+      : props.currentRate || props.hoursCharging || props.resultButton
+      ? "auto"
+      : "none"};
   transition: background 0.5s ease;
   color: ${(props) => (props.previousStep ? "#000" : "#fff")};
   text-align: center;
